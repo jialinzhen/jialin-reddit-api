@@ -63,6 +63,8 @@ class SearchBox extends React.Component {
             </div>
         }
 
+
+
         return (
             <div>
                 {loading}
@@ -79,7 +81,7 @@ class SearchBox extends React.Component {
                     this.state.error && 
                     <div>
                         You cannot access this resource : 
-                        this resource is <p>{this.state.error.reason}</p>
+                        this resource is <p>{this.state.error.message}</p>
                     </div>
                 }
                 <Articles articles={currentPosts}/>
