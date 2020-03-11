@@ -2,9 +2,10 @@ const express = require('express');
 var request = require('request');
 const path = require('path');
 
+
 const app = express();
 
-app.use(express.static(path.join(__dirname, './reddit-frontend/build')))
+app.use(express.static(path.join(__dirname, './client/build')))
 
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
