@@ -13,25 +13,28 @@ class SearchBox extends React.Component {
             loading: false,
             postsPerPage: 2,
             currentPage: 1,
-            error: null
+            error: null,
+            clickedSubmit: false
         }
     }
 
     submitSubredditSearch(search) {
         this.setState({loading: true})
         axios.get('/' + search).then(allArticles => {
-            if(allArticles.data[0].error) {
-                this.setState({
-                    error: allArticles.data[0],
-                    loading: false,
-                    allArticles: []
-                })
-            } else {
-                this.setState({
-                    allArticles: allArticles.data,
-                    loading: false,
-                    error: null
-                 })
+            if(!allArticles.length == 0) {
+                if(allArticles.data[0].error) {
+                    this.setState({
+                        error: allArticles.data[0],
+                        loading: false,
+                        allArticles: []
+                    })
+                } else {
+                    this.setState({
+                        allArticles: allArticles.data,
+                        loading: false,
+                        error: null
+                     })
+                }
             }
         })
     }
@@ -63,7 +66,7 @@ class SearchBox extends React.Component {
             </div>
         }
 
-
+        let noItem = this.state.allArticles.length == 0 && this.state.clickedSubmit;
 
         return (
             <div>
@@ -77,11 +80,15 @@ class SearchBox extends React.Component {
                     onClick={() => 
                     this.submitSubredditSearch(this.state.searchItem)}>Search</button>
                 </div>
+                {noItem &&
+                    <p>This search has no blog post</p>
+                }
                 {
                     this.state.error && 
                     <div>
                         You cannot access this resource : 
-                        this resource is <p>{this.state.error.message}</p>
+                        this resource is <p>{this.state.error.message}</p> with the
+                        reason of <p>{this.state.error.reason}</p>
                     </div>
                 }
                 <Articles articles={currentPosts}/>
