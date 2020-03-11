@@ -21,18 +21,20 @@ class SearchBox extends React.Component {
     submitSubredditSearch(search) {
         this.setState({loading: true})
         axios.get('/' + search).then(allArticles => {
-            if(!allArticles.length == 0) {
+            if(allArticles.length != 0) {
                 if(allArticles.data[0].error) {
                     this.setState({
                         error: allArticles.data[0],
                         loading: false,
-                        allArticles: []
+                        allArticles: [],
+                        clickedSubmit: true
                     })
                 } else {
                     this.setState({
                         allArticles: allArticles.data,
                         loading: false,
-                        error: null
+                        error: null,
+                        clickedSubmit: true
                      })
                 }
             }
