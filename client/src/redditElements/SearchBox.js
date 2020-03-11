@@ -78,7 +78,8 @@ class SearchBox extends React.Component {
                 {
                     this.state.error && 
                     <div>
-                        <p>{this.state.error.reason}</p>
+                        You cannot access this resource : 
+                        this resource is <p>{this.state.error.reason}</p> and 
                         <p>{this.state.error.message}</p>
                     </div>
                 }
