@@ -15,7 +15,7 @@ we can download node js here: https://nodejs.org/en/download/
 2) Open a terminal screen cd into the project folder, run "npm install" to install the dependency and then run "npm start"
    to start the backend
 3) while that is running, open another terminal screen to cd into the project then into client folder
-4) run npm start on the client folder
+4) run "npm install" and then "npm start" to start the client folder
 
 
 Overview of how my application work:
