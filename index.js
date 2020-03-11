@@ -4,7 +4,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../reddit-frontend')))
+app.use(express.static(path.join(__dirname, './reddit-frontend/build')))
 
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -45,9 +45,6 @@ app.get('/:subreddit/', (req, res) => {
 	})
 })
 
-// app.get('*', (req, res) => {
-// 	res.sendFile(path.join(__dirname+'..//reddit-frontend/build/index.html'));
-//   });
 
   const port = process.env.PORT || 8000;
 
