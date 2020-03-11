@@ -71,7 +71,7 @@ class SearchBox extends React.Component {
                     type="text" 
                     placeholder="Enter Subreddit Name for Search"
                     onChange={e => this.changesearchItem(e)}></input>
-                    <button type="button" class="btn btn-success" 
+                    <button type="button" class="btn btn-success" disabled={this.state.searchItem == ''}
                     onClick={() => 
                     this.submitSubredditSearch(this.state.searchItem)}>Search</button>
                 </div>
@@ -79,8 +79,7 @@ class SearchBox extends React.Component {
                     this.state.error && 
                     <div>
                         You cannot access this resource : 
-                        this resource is <p>{this.state.error.reason}</p> and 
-                        <p>{this.state.error.message}</p>
+                        this resource is <p>{this.state.error.reason}</p>
                     </div>
                 }
                 <Articles articles={currentPosts}/>

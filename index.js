@@ -1,8 +1,6 @@
 const express = require('express');
 var request = require('request');
 const path = require('path');
-
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, './client/build')))
@@ -15,12 +13,6 @@ app.use(function(req, res, next) {
 	  "GET, POST, PUT, DELETE, OPTIONS");
 	next();
   })
-
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-});
-
 
 app.get('/:subreddit/', (req, res) => {
 	var url = 'https://www.reddit.com/r/' + req.params.subreddit + '/.json';
