@@ -28,3 +28,5 @@ our express backend to fetch the information (content, title, author of)
 of all articles under a subreddit specified in search and display them in the frontend. We also enabled error handling 
 when user had typed in a invalid value in the search box, or the subreddit is forbidden or private, we will print that
 out in the console.
+
+Also, we enabled pagination for our app at the bottom of the UI page.
