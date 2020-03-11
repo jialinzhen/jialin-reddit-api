@@ -1,6 +1,10 @@
-const express = require('express')
-const app = express();
+const express = require('express');
 var request = require('request');
+const path = require('path');
+
+const app = express();
+
+app.use(express.static(path.join(__dirname, '../reddit-frontend')))
 
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -41,7 +45,12 @@ app.get('/:subreddit/', (req, res) => {
 	})
 })
 
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.join(__dirname+'..//reddit-frontend/build/index.html'));
+//   });
 
-app.listen(8000, () => {
+  const port = process.env.PORT || 8000;
+
+app.listen(port, () => {
   console.log('Example app listening on port 8000!')
 });
