@@ -19,24 +19,28 @@ class SearchBox extends React.Component {
     }
 
     submitSubredditSearch(search) {
-        this.setState({loading: true})
+        this.setState({loading: true, clickedSubmit: true})
         axios.get('/' + search).then(allArticles => {
-            if(allArticles.length != 0) {
+            console.log(allArticles);
+            if(allArticles.data.length != 0) {
                 if(allArticles.data[0].error) {
                     this.setState({
                         error: allArticles.data[0],
                         loading: false,
                         allArticles: [],
-                        clickedSubmit: true
                     })
                 } else {
                     this.setState({
                         allArticles: allArticles.data,
                         loading: false,
                         error: null,
-                        clickedSubmit: true
                      })
                 }
+            } else {
+                this.setState({
+                    loading: false,
+                    allArticles: []
+                })
             }
         })
     }
@@ -68,7 +72,8 @@ class SearchBox extends React.Component {
             </div>
         }
 
-        let noItem = this.state.allArticles.length == 0 && this.state.clickedSubmit;
+        let noItem = this.state.allArticles.length == 0 && this.state.clickedSubmit && 
+        !this.state.error;
 
         return (
             <div>
@@ -83,8 +88,7 @@ class SearchBox extends React.Component {
                     this.submitSubredditSearch(this.state.searchItem)}>Search</button>
                 </div>
                 {noItem &&
-                    <p>This search has no blog post</p>
-                }
+                    <p>This search has no blog post</p>}
                 {
                     this.state.error && 
                     <div>
